@@ -1415,35 +1415,35 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label data-en="Your Name" data-ar="اسمك">Your Name</label>
-                                <input type="text" data-en-ph="John Doe" data-ar-ph="محمد أحمد" placeholder="John Doe" required>
+                                <input type="text" id="waName" data-en-ph="John Doe" data-ar-ph="محمد أحمد" placeholder="John Doe" required>
                             </div>
                             <div class="form-group">
                                 <label data-en="Email Address" data-ar="البريد الإلكتروني">Email Address</label>
-                                <input type="email" data-en-ph="john@company.com" data-ar-ph="example@email.com" placeholder="john@company.com" required>
+                                <input type="email" id="waEmail" data-en-ph="john@company.com" data-ar-ph="example@email.com" placeholder="john@company.com" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group">
                                 <label data-en="Phone Number" data-ar="رقم الهاتف">Phone Number</label>
-                                <input type="tel" placeholder="+20 xxx xxx xxxx">
+                                <input type="tel" id="waPhone" placeholder="+20 xxx xxx xxxx" required>
                             </div>
                             <div class="form-group">
                                 <label data-en="Service Needed" data-ar="الخدمة المطلوبة">Service Needed</label>
-                                <select required>
+                                <select id="waService" required>
                                     <option value="" disabled selected data-en="Select a service" data-ar="اختر خدمة">Select a service</option>
-                                    <option data-en="Web Design" data-ar="تصميم موقع">Web Design</option>
-                                    <option data-en="Web Development" data-ar="تطوير ويب">Web Development</option>
-                                    <option data-en="E-Commerce" data-ar="متجر إلكتروني">E-Commerce</option>
-                                    <option data-en="Web Application" data-ar="تطبيق ويب">Web Application</option>
-                                    <option data-en="Performance Optimization" data-ar="تحسين الأداء">Performance Optimization</option>
-                                    <option data-en="API Integration" data-ar="ربط API">API Integration</option>
-                                    <option data-en="Full Package" data-ar="باقة شاملة">Full Package</option>
+                                    <option value="تصميم موقع" data-en="Web Design" data-ar="تصميم موقع">Web Design</option>
+                                    <option value="تطوير ويب" data-en="Web Development" data-ar="تطوير ويب">Web Development</option>
+                                    <option value="متجر إلكتروني" data-en="E-Commerce" data-ar="متجر إلكتروني">E-Commerce</option>
+                                    <option value="تطبيق ويب" data-en="Web Application" data-ar="تطبيق ويب">Web Application</option>
+                                    <option value="تحسين الأداء" data-en="Performance Optimization" data-ar="تحسين الأداء">Performance Optimization</option>
+                                    <option value="ربط API" data-en="API Integration" data-ar="ربط API">API Integration</option>
+                                    <option value="باقة شاملة" data-en="Full Package" data-ar="باقة شاملة">Full Package</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group full">
                             <label data-en="Project Details" data-ar="تفاصيل المشروع">Project Details</label>
-                            <textarea data-en-ph="Tell us about your project, goals, and timeline..." data-ar-ph="أخبرنا عن مشروعك، أهدافك، والجدول الزمني..." placeholder="Tell us about your project, goals, and timeline..."></textarea>
+                            <textarea id="waDetails" data-en-ph="Tell us about your project, goals, and timeline..." data-ar-ph="أخبرنا عن مشروعك، أهدافك، والجدول الزمني..." placeholder="Tell us about your project, goals, and timeline..." required></textarea>
                         </div>
                         <button type="submit" class="form-submit" data-en="Send Message" data-ar="إرسال الرسالة">Send Message</button>
                     </form>
@@ -1599,24 +1599,53 @@
         function resetTI() { clearInterval(ti); autoT(); }
         autoT();
 
-        // ===== CONTACT FORM =====
+        // ===== CONTACT FORM TO WHATSAPP =====
         const contactForm = document.getElementById('contactForm');
         const toast = document.getElementById('toast');
         const toastMsg = document.getElementById('toastMsg');
+
         contactForm.addEventListener('submit', e => {
             e.preventDefault();
+
+            // سحب البيانات اللي العميل كتبها
+            const name = document.getElementById('waName').value;
+            const email = document.getElementById('waEmail').value;
+            const phone = document.getElementById('waPhone').value;
+            const service = document.getElementById('waService').value;
+            const details = document.getElementById('waDetails').value;
+
+            // تجميع وتنسيق الرسالة للواتساب
+            const message = `مرحباً، لدي طلب مشروع جديد من موقعك الإلكتروني:%0A%0A*الاسم:* ${name}%0A*البريد الإلكتروني:* ${email}%0A*رقم الهاتف:* ${phone}%0A*الخدمة المطلوبة:* ${service}%0A*تفاصيل المشروع:* ${details}`;
+
+            // رقم الواتساب الخاص بك
+            const whatsappNumber = "201007466197";
+
+            // دمج الرقم مع الرسالة في رابط الواتساب الرسمي
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+            // تغيير شكل الزرار للتحميل
             const btn = contactForm.querySelector('.form-submit');
             const lang = document.documentElement.lang || 'en';
-            btn.textContent = lang === 'ar' ? 'جاري الإرسال...' : 'SENDING...';
+            btn.textContent = lang === 'ar' ? 'جاري التحويل للواتساب...' : 'REDIRECTING...';
             btn.disabled = true;
+
             setTimeout(() => {
+                // فتح الواتساب للعميل
+                window.open(whatsappURL, '_blank');
+
+                // إرجاع الزرار لشكله الطبيعي وإظهار رسالة نجاح
                 btn.textContent = lang === 'ar' ? 'إرسال الرسالة' : 'SEND MESSAGE';
                 btn.disabled = false;
                 contactForm.reset();
-                showToast(lang === 'ar' ? 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.' : 'Message sent successfully! We\'ll get back to you soon.');
-            }, 1500);
+                showToast(lang === 'ar' ? 'تم تحويلك للواتساب بنجاح!' : 'Redirected to WhatsApp successfully!');
+            }, 1000);
         });
-        function showToast(msg) { toastMsg.textContent = msg; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 4000); }
+
+        function showToast(msg) { 
+            toastMsg.textContent = msg; 
+            toast.classList.add('show'); 
+            setTimeout(() => toast.classList.remove('show'), 4000); 
+        }
 
         // ===== SMOOTH SCROLL =====
         document.querySelectorAll('a[href^="#"]').forEach(a => {
