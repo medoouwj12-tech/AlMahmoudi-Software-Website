@@ -2,7 +2,8 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#030304">
     <title>Al-Mohamady — Building Elite Digital Experiences</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -1021,6 +1022,247 @@
             .about-experience { bottom: -12px; right: -12px; padding: 18px; }
             .about-experience .number { font-size: 28px; }
         }
+
+        /* ============================================================
+           ===== MOBILE / RESPONSIVE ENHANCEMENTS (v2) =================
+           Goal: keep the desktop look intact and make the phone view
+           equally polished and elegant.
+           ============================================================ */
+
+        /* ----- Global: prevent horizontal scroll on every device ---- */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, video { max-width: 100%; height: auto; }
+        .nav-container, .section-container, .hero-content,
+        .footer-content, .footer-bottom { max-width: 100%; }
+
+        /* ----- Disable expensive hover effects on touch devices ----- */
+        @media (hover: none) and (pointer: coarse) {
+            .magnetic { transform: none !important; }
+            .portfolio-card { transform: none !important; }
+            .portfolio-card:hover img { transform: none; filter: none; }
+            .portfolio-overlay { opacity: 1 !important; transform: none !important;
+                background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.35) 60%, transparent 100%); }
+            .service-card:hover, .why-card:hover { transform: none; }
+            .btn-primary:hover, .btn-secondary:hover, .form-submit:hover,
+            .footer-socials a:hover { transform: none !important; }
+            .hero-glow { transform: translate(-50%, -50%) !important; }
+        }
+
+        /* ----- Tablet (≤1024px) ------------------------------------- */
+        @media (max-width: 1024px) {
+            .nav-container { padding: 0 28px; }
+            .nav-links { gap: 24px; }
+            section { padding: 100px 28px; }
+            .section-header { margin-bottom: 60px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* ----- Phone landscape & small tablet (≤768px) -------------- */
+        @media (max-width: 768px) {
+            section { padding: 70px 20px; }
+            .section-header { margin-bottom: 48px; }
+            .section-title { font-size: clamp(26px, 7vw, 36px); }
+            .section-subtitle { font-size: 14px; padding: 0 6px; }
+            .section-label { font-size: 9px; letter-spacing: 3.5px; }
+            .section-label::before, .section-label::after { width: 22px; }
+
+            .loader-logo { width: 100px; margin-bottom: 28px; }
+            .loader-text { font-size: 16px; letter-spacing: 6px; margin-bottom: 28px; }
+            .loader-bar-container { width: 180px; }
+
+            .hero { min-height: 100vh; padding: 110px 22px 90px; }
+            .hero-badge { padding: 8px 18px; font-size: 9px; letter-spacing: 3px; margin-bottom: 30px; }
+            .hero-logo { width: 130px; margin-bottom: 30px; }
+            .hero h1 { font-size: clamp(30px, 9vw, 44px); line-height: 1.15; margin-bottom: 22px; }
+            .hero-desc { font-size: 14.5px; line-height: 1.75; margin-bottom: 38px; padding: 0 6px; }
+            .hero-buttons { gap: 14px; }
+            .hero-scroll { bottom: 22px; }
+            .scroll-line { height: 36px; }
+            .hero-bg-grid { background-size: 44px 44px; }
+            .hero-glow { width: 420px; height: 420px; }
+            .hero-glow-2 { width: 260px; height: 260px; right: -10%; }
+            .orb-1 { width: 200px; height: 200px; }
+            .orb-2 { width: 150px; height: 150px; }
+            .orb-3 { width: 110px; height: 110px; }
+
+            .navbar { padding: 14px 0; }
+            .navbar.scrolled { padding: 8px 0; }
+            .nav-container { padding: 0 20px; }
+            .nav-logo img { height: 38px; }
+            .nav-links, .nav-cta, .lang-toggle, .nav-center { display: none; }
+            .nav-right { gap: 10px; }
+            .hamburger { display: flex; }
+
+            .mobile-menu { gap: 22px; padding: 80px 24px 40px; }
+            .mobile-menu a { font-size: 20px; letter-spacing: 2.5px; }
+            .mobile-lang-toggle { margin-top: 14px; }
+
+            .about-grid { grid-template-columns: 1fr; gap: 70px; }
+            .about-image-wrapper { max-width: 460px; margin: 0 auto; }
+            .about-image-wrapper::before { inset: -14px; border-radius: 18px; }
+            .about-image-wrapper::after { width: 60px; height: 60px; bottom: -14px; right: -14px; }
+            .about-text { text-align: center; }
+            .about-text h3 { font-size: 24px; }
+            .about-text .section-label { justify-content: center; display: inline-flex; }
+            .about-stats { gap: 12px; margin-top: 32px; padding-top: 32px; }
+            .stat-item .stat-number { font-size: 26px; }
+            .stat-item .stat-label { font-size: 10px; letter-spacing: 1.2px; }
+
+            .services-grid { grid-template-columns: 1fr; gap: 16px; }
+            .service-card { padding: 32px 26px; }
+            .service-card h3 { font-size: 16px; }
+            .service-card p { font-size: 13px; }
+            .service-card .service-num { top: 14px; right: 18px; font-size: 42px; }
+
+            .portfolio-grid { grid-template-columns: 1fr; gap: 16px; }
+            .portfolio-filter { gap: 6px; margin-bottom: 36px; }
+            .filter-btn { padding: 8px 18px; font-size: 10px; letter-spacing: 1.2px; }
+            .portfolio-overlay { padding: 24px; }
+            .portfolio-overlay h3 { font-size: 18px; }
+            .portfolio-overlay p { font-size: 12.5px; }
+            .view-arrow { width: 38px; height: 38px; top: 18px; right: 18px; }
+
+            .why-grid { grid-template-columns: 1fr; gap: 14px; }
+            .why-card { padding: 28px 22px; gap: 18px; }
+            .why-card h3 { font-size: 15px; }
+            .why-card p { font-size: 13px; }
+            .why-icon { width: 44px; height: 44px; min-width: 44px; }
+
+            .testimonials-slider { padding: 0 6px; }
+            .testimonial-quote { font-size: clamp(16px, 4.6vw, 20px); line-height: 1.6; margin-bottom: 28px; }
+            .testimonial-quote .quote-mark { font-size: 38px; vertical-align: -10px; margin-right: 4px; }
+            .testimonial-author img { width: 44px; height: 44px; }
+            .testimonial-author-info .name { font-size: 14px; }
+            .testimonial-author-info .role { font-size: 10px; letter-spacing: 1.2px; }
+            .testimonial-dots { margin-top: 32px; }
+
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-info h3 { font-size: 22px; }
+            .contact-info p { font-size: 14px; margin-bottom: 28px; }
+            .contact-method { gap: 14px; }
+            .contact-method-icon { width: 44px; height: 44px; min-width: 44px; }
+            .contact-method .method-value { font-size: 13.5px; word-break: break-word; }
+            .contact-form { padding: 26px 20px; border-radius: 18px; }
+            .form-row { grid-template-columns: 1fr; gap: 16px; margin-bottom: 16px; }
+            .form-group label { font-size: 10px; letter-spacing: 2px; }
+            .form-group input,
+            .form-group textarea,
+            .form-group select { font-size: 16px; padding: 13px 16px; border-radius: 10px; }
+            .form-group textarea { min-height: 110px; }
+            .form-submit { padding: 15px; font-size: 11.5px; letter-spacing: 2px; }
+
+            .footer { padding: 50px 22px 28px; }
+            .footer-content { flex-direction: column; text-align: center; gap: 22px; }
+            .footer-text { font-size: 12.5px; }
+            .footer-bottom { font-size: 10.5px; padding-top: 22px; }
+
+            .whatsapp-float { bottom: 22px; right: 22px; width: 52px; height: 52px; }
+            .whatsapp-float svg { width: 26px; height: 26px; }
+            .instagram-float { bottom: 86px; right: 25px; width: 44px; height: 44px; }
+            .instagram-float svg { width: 20px; height: 20px; }
+            .toast { bottom: 156px; right: 18px; left: 18px; padding: 14px 18px;
+                text-align: center; justify-content: center; font-size: 12.5px; }
+        }
+
+        /* ----- Phone portrait (≤480px) ------------------------------ */
+        @media (max-width: 480px) {
+            section { padding: 60px 18px; }
+            .nav-container { padding: 0 18px; }
+            .nav-logo img { height: 34px; }
+
+            .hero { padding: 100px 18px 80px; }
+            .hero-badge { font-size: 8.5px; letter-spacing: 2.5px; padding: 7px 14px; }
+            .hero-logo { width: 110px; margin-bottom: 26px; }
+            .hero h1 { font-size: clamp(26px, 8.5vw, 36px); margin-bottom: 18px; }
+            .hero-desc { font-size: 13.5px; margin-bottom: 32px; }
+            .hero-buttons { flex-direction: column; align-items: stretch; gap: 12px; padding: 0 8px; }
+            .btn-primary, .btn-secondary { width: 100%; text-align: center; padding: 15px 28px; font-size: 11.5px; letter-spacing: 2px; }
+
+            .section-title { font-size: clamp(24px, 7.5vw, 32px); }
+            .section-header { margin-bottom: 40px; }
+
+            .about-image-wrapper { max-width: 100%; }
+            .about-experience { bottom: -10px; right: -10px; padding: 16px 18px; border-radius: 12px; }
+            .about-experience .number { font-size: 24px; }
+            .about-experience .label { font-size: 9px; letter-spacing: 1.5px; }
+            .about-text h3 { font-size: 21px; line-height: 1.35; }
+            .about-text p { font-size: 14px; }
+
+            .service-card { padding: 28px 22px; border-radius: 16px; }
+            .service-icon { width: 48px; height: 48px; margin-bottom: 22px; }
+            .service-card .service-num { font-size: 36px; top: 12px; right: 16px; }
+
+            .portfolio-card { aspect-ratio: 5/4; border-radius: 16px; }
+            .portfolio-overlay { padding: 20px; }
+
+            .why-card { padding: 24px 20px; gap: 16px; border-radius: 16px; }
+
+            .testimonial-quote { font-size: 16px; }
+
+            .contact-info h3 { font-size: 20px; line-height: 1.35; }
+            .contact-form { padding: 22px 18px; }
+
+            .footer { padding: 40px 18px 24px; }
+            .footer-logo img { height: 36px; }
+
+            .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
+            .instagram-float { width: 42px; height: 42px; bottom: 80px; right: 24px; }
+            .toast { bottom: 144px; }
+        }
+
+        /* ----- Very small phones (≤360px) --------------------------- */
+        @media (max-width: 360px) {
+            section { padding: 56px 14px; }
+            .hero { padding: 96px 14px 70px; }
+            .hero h1 { font-size: 24px; }
+            .hero-desc { font-size: 13px; }
+            .nav-container { padding: 0 14px; }
+            .loader-logo { width: 88px; }
+            .loader-text { font-size: 14px; letter-spacing: 4px; }
+            .contact-form, .service-card, .why-card { padding: 20px 16px; }
+            .form-group input, .form-group textarea, .form-group select { padding: 12px 14px; }
+            .about-text h3 { font-size: 19px; }
+            .section-title { font-size: 22px; }
+        }
+
+        /* ----- Short / landscape phones: keep hero from cramping ---- */
+        @media (max-height: 640px) and (max-width: 900px) {
+            .hero { min-height: auto; padding-top: 110px; padding-bottom: 60px; }
+            .hero-scroll { display: none; }
+        }
+
+        /* ----- RTL fixes for absolutely-positioned elements --------- */
+        body.rtl .service-card .service-num { right: auto; left: 22px; }
+        body.rtl .view-arrow { right: auto; left: 24px; }
+        body.rtl .about-image-wrapper::after {
+            right: auto; left: -24px;
+            border-right: none; border-left: 1px solid var(--gold);
+            border-radius: 0 0 0 16px;
+        }
+        body.rtl .about-experience { right: auto; left: -24px; }
+        body.rtl .whatsapp-float { right: auto; left: 30px; }
+        body.rtl .instagram-float { right: auto; left: 34px; }
+        body.rtl .toast { right: auto; left: 30px; }
+        @media (max-width: 768px) {
+            body.rtl .service-card .service-num { left: 18px; }
+            body.rtl .view-arrow { left: 18px; }
+            body.rtl .about-image-wrapper::after { left: -14px; }
+            body.rtl .about-experience { left: -10px; }
+            body.rtl .whatsapp-float { left: 22px; }
+            body.rtl .instagram-float { left: 25px; }
+            body.rtl .toast { left: 18px; right: 18px; }
+        }
+
+        /* ----- Reduced motion: respect user preference -------------- */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .particle, .orb, .hero-glow, .hero-glow-2 { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -1500,16 +1742,21 @@
             loaderPercent.textContent = percent + '%';
         }, 55);
 
-        // ===== MAGNETIC EFFECT =====
-        document.querySelectorAll('.magnetic').forEach(el => {
-            el.addEventListener('mousemove', e => {
-                const rect = el.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+        // ===== TOUCH DETECTION =====
+        const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+
+        // ===== MAGNETIC EFFECT (desktop only) =====
+        if (!isTouchDevice) {
+            document.querySelectorAll('.magnetic').forEach(el => {
+                el.addEventListener('mousemove', e => {
+                    const rect = el.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+                });
+                el.addEventListener('mouseleave', () => { el.style.transform = ''; });
             });
-            el.addEventListener('mouseleave', () => { el.style.transform = ''; });
-        });
+        }
 
         // ===== NAVBAR =====
         const navbar = document.getElementById('navbar');
@@ -1656,14 +1903,16 @@
             });
         });
 
-        // ===== PARALLAX GLOW =====
-        const heroGlow = document.querySelector('.hero-glow');
-        window.addEventListener('mousemove', e => {
-            if (!heroGlow) return;
-            const x = (e.clientX / window.innerWidth - 0.5) * 40;
-            const y = (e.clientY / window.innerHeight - 0.5) * 40;
-            heroGlow.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-        });
+        // ===== PARALLAX GLOW (desktop only) =====
+        if (!isTouchDevice) {
+            const heroGlow = document.querySelector('.hero-glow');
+            window.addEventListener('mousemove', e => {
+                if (!heroGlow) return;
+                const x = (e.clientX / window.innerWidth - 0.5) * 40;
+                const y = (e.clientY / window.innerHeight - 0.5) * 40;
+                heroGlow.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+            });
+        }
 
         // ===== LANGUAGE TOGGLE =====
         let currentLang = 'en';
@@ -1698,22 +1947,24 @@
             btn.addEventListener('click', () => switchLang(btn.dataset.lang));
         });
 
-        // ===== TILT EFFECT ON PORTFOLIO =====
-        document.querySelectorAll('.portfolio-card').forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const rect = card.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / rect.width - 0.5;
-                const y = (e.clientY - rect.top) / rect.height - 0.5;
-                card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+        // ===== TILT EFFECT ON PORTFOLIO (desktop only) =====
+        if (!isTouchDevice) {
+            document.querySelectorAll('.portfolio-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) scale(1.02)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) scale(1)';
+                    card.style.transition = 'transform 0.6s ease';
+                });
+                card.addEventListener('mouseenter', () => {
+                    card.style.transition = 'transform 0.1s ease';
+                });
             });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(800px) rotateY(0) rotateX(0) scale(1)';
-                card.style.transition = 'transform 0.6s ease';
-            });
-            card.addEventListener('mouseenter', () => {
-                card.style.transition = 'transform 0.1s ease';
-            });
-        });
+        }
     </script>
 </body>
 </html>
